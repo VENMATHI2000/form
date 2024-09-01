@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form for the Job</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1593642634315-48f5414c3ad9');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: #e0e0e0;
+        }
+
+        /* Title Style */
+        .title-container {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #f1c40f; /* Dark yellow color for the title */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Subtle shadow for better visibility */
+            margin: 60px 0; /* Space above and below the title */
+            animation: slideInFromTop 1s ease-out forwards;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .form-container {
+            background-color: #2e2e2e;
+            color: #e0e0e0;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            width: 600px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border: 2px solid #6a1b9a; /* Purple border for the form */
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        .input-group input,
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #6a1b9a; /* Purple border for inputs */
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: #87ceeb; /* Sky blue border on focus */
+            outline: none;
+        }
+
+        .input-group .view-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .submit-btn {
+            background-color: #6a1b9a; /* Purple button background */
+            color: #e0e0e0;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            grid-column: span 2;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #4a00e0; /* Darker purple on hover */
+        }
+
+        .error {
+            color: #dc3545;
+            margin-top: 10px;
+            grid-column: span 2;
+            display: none;
+        }
+
+        .tooltip {
+            position: absolute;
+            top: -30px;
+            right: 10px;
+            background-color: #dc3545;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .input-group:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            padding-left: 50px;
+            border-radius: 8px;
+            border: 1px solid #6a1b9a; /* Purple border for phone input */
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #e0e0e0;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        .input-wrapper::before {
+            content: "+91";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Title -->
+    <div class="title-container">
+        Application Form for the Job
+    </div>
+
+    <div class="form-container">
+        <div class="input-group">
+            <label for="Username">Username:</label>
+            <input type="text" id="name" name="name" required>
+            <div class="tooltip">Username must start with an alphabet and be unique</div>
+        </div>
+        <div class="input-group">
+            <label for="registrationDate">Date of Birth:</label>
+            <input type="date" id="registrationDate" name="registrationDate" required min="2000-01-01">
+            <div class="tooltip">Date must be from the year 2000 onwards</div>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <i class="fas fa-eye view-password" onclick="togglePasswordVisibility('password')"></i>
+            <div class="tooltip">Password must be 16 characters long and include a special character</div>
+        </div>
+        <div class="input-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <i class="fas fa-eye view-password" onclick="togglePasswordVisibility('confirmPassword')"></i>
+            <div class="tooltip">Passwords must match</div>
+        </div>
+        <div class="input-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <div class="input-wrapper">
+                <input type="text" id="phoneNumber" name="phoneNumber" required pattern="\d{10}" placeholder="Enter 10-digit mobile number">
+            </div>
+            <div class="tooltip">Phone number must be 10 digits</div>
+        </div>
+        <div class="input-group">
+            <label for="email">Email ID:</label>
+            <input type="email" id="email" name="email" required>
+            <div class="tooltip">Enter a valid email address</div>
+        </div>
+        <div class="input-group">
+            <label for="profileURL">Profile URL:</label>
+            <input type="url" id="profileURL" name="profileURL">
+            <div class="tooltip">Enter your profile URL (optional)</div>
+        </div>
+        <div class="input-group">
+            <label for="resume">Upload Resume:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+        </div>
+        <!-- Feedback Field -->
+        <div class="input-group" style="grid-column: span 2;">
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="4" placeholder="Provide your feedback here..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(id) {
+            var passwordField = document.getElementById(id);
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>
+</body>
+</html>
